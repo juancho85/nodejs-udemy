@@ -4,19 +4,18 @@ const express = require('express');
 
 const app = express();
 
-app.use((req, res, next) => {
+app.use('/add-product', (req, res, next) => {
     const method = req.method;
     const path = req.path;
-    console.log(`Middleware 1 [method: ${method}][method: ${path}]`);
-    next();
+    console.log(`Add product [method: ${method}][method: ${path}]`);
+    res.send('<h1>Add product path</h1>');
 });
 
-app.use((req, res, next) => {
+app.use('/', (req, res, next) => {
     const method = req.method;
     const path = req.path;
-    console.log(`Middleware 2 [method: ${method}][method: ${path}]`);
-    res.send('<h1>Hello</h1>');
-
+    console.log(`Root path [method: ${method}][method: ${path}]`);
+    res.send(`<h1>Hello path ${path}</h1>`);
 });
 
 const server = http.createServer(app);
